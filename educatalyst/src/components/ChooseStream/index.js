@@ -1,7 +1,8 @@
 import React from 'react'
 //import '../style.css'
 import { useEffect, useState } from 'react'
-import Home from '../Home/index_alt'
+import Home from '../Home/index_alt';
+import MasterForm from '../Forms/components/MasterForm';
 const ChooseStream = () => {
 
     const [name , setName] = useState('John Doe')
@@ -23,32 +24,8 @@ const ChooseStream = () => {
     <br/>
     <h4>Please choose your Stream</h4>
     <br/>
-
-    <div class="container">
-  <div class="row">
-    <div class="col align-self-start">
-        <div>
-            <a href="./scienceMarksEntry.html">
-                <img class="image1" src="../../assets/science.gif"/>
-            </a>
-          </div>
-    </div>
-    <div class="col align-self-center">
-        <div>
-            <a href="./commerceMarksEntry.html">
-                <img class="image1" src="../../assets/commerce.gif"/>
-            </a>
-          </div>
-    </div>
-    <div class="col align-self-end">
-        <div>
-            <a href="./artsMarksEntry.html">
-                <img class="image1" src="../../assets\arts.gif"/>
-            </a>
-          </div>
-    </div>
-  </div>
-</div>
+    <MasterForm/>
+    
     </div>
     </>
   )
