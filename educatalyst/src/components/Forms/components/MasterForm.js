@@ -32,7 +32,8 @@ class MasterForm extends Component {
       password: "",
       marks :[0,0,0,0],
       questions:['q1','q2','q3','q4','q5'],
-       
+      test_score:{1:[],2:[],3:[],4:[]},   
+      hrs:490, 
     };
 
     // Bind the submission to handleChange()
@@ -46,7 +47,7 @@ class MasterForm extends Component {
   // Use the submitted data to set the state
   handleStream(event) {
     const indx = event.target.value
-    console.log('###',indx)
+    //console.log('###',indx)
     var list = [false,false,false]
     list[indx] = true;
     this.setState({
@@ -82,39 +83,54 @@ class MasterForm extends Component {
     else{
     this.setState({
       [name]: value,
-      stream: ['Physics', 'Chemistry', 'Maths']
+      
     });
   }
-console.log(this.state)}
+// 
+}
 
   getMarks(e) {
     let marks_new = this.state.marks
 
     return marks_new[e.target.name]
   }
+  getHrs(e) {
+    let hrs_new = this.state.hrs
+
+    return hrs_new
+  }
   handleMarks(e) {
-    console.log('G8G')
+    // console.log('G8G')
    let  index = e.target.name
     let marks_new = this.state.marks
     marks_new[index]  = e.target.value
     this.setState({
       marks:marks_new
     })
-    console.log('G8G',marks_new)
+    // console.log('G8G',marks_new)
   }
 
   // Trigger an alert on form submission
   handleSubmit = event => {
     event.preventDefault();
-    
+    console.log('fgg',this.state)
+    for(let statename in this.state){
+      if (isNaN(statename.substring(0,1))){
+          console.log('not number')
+      }
+      else{
+           var idx = parseInt(statename.substring(0,1))
+          console.log('herrerer',statename.substring(0,1),idx,this.state.test_score)
+          this.state.test_score[idx].push(this.state[statename])
+      }}
     // let navigate = useNavigate()
     const { email, username, password } = this.state;
-    alert(`Your registration detail: \n 
-      Email: ${email} \n 
-      Username: ${username} \n
-      Password: ${password}`);
+    // alert(`Your registration detail: \n 
+    //   Email: ${email} \n 
+    //   Username: ${username} \n
+    //   Password: ${password}`);
     let details = this.state 
-    localStorage.setItem('details', details)
+    localStorage.setItem('details', JSON.stringify(details))
     // navigate('/results')
     this.props.navigate('/results')
     };

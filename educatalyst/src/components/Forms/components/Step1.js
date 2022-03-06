@@ -30,6 +30,8 @@ const Step1 = props => {
      onChange={props.handleChange}/>
     <label for="c">c</label>
 </div>
+    <label> No of hours studied</label>
+    <input type='number' name ='hrs' value ={props.getHrs} onChange={props.handleChange}></input>
       </FormGroup>
     </>
   );
