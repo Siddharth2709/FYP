@@ -8,9 +8,17 @@ const Step3 = props => {
 
   return (
     <>
-      <p>We recommend creating a secure password for your account</p>
+      <p>We recommend answering these questions to help us predict better!</p>
       <FormGroup>
-        <Label for="password">Password</Label>
+        {/* <Label for="password">Password</Label> */}
+        {props.questions.map((sub,index) => {
+            console.log('here', sub,index);
+            return <div>
+              <label> {sub}</label>
+              <Input type = 'number' name= {sub} value = {props.getMarks}  min='0' max='100'  onChange={props.handleChange}/>
+              
+            </div>
+        })} 
         <Input
           type="password"
           name="password"

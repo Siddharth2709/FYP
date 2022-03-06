@@ -5,6 +5,7 @@ import Home from './components/Home/index'
 import ChooseStream from './components/ChooseStream/index';
 import {Navbar, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UIDashboard from './components/Results/index';
 function App() {
   return (
    <>
@@ -12,6 +13,7 @@ function App() {
        <Routes>
          <Route  path='/' element={<Home/>}></Route>
          <Route path = '/chooseStream' element={<ChooseStream/>}></Route>
+         <Route path = '/results' element = {<UIDashboard/>}></Route>
        </Routes>
    </Router>
 

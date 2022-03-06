@@ -1,0 +1,106 @@
+body {
+    background-color:  #252830;
+    color: rgb(207, 210, 218);
+  }
+  div strong {
+    color: #999;
+  }
+  .pie__chart-wrapper {
+      margin-bottom: 30px;
+  }
+  .pie__chart {
+      max-width: 250px;
+      margin: 0 auto 15px;
+  }
+  .line__chart {
+    max-width: 255px;
+    color: #fff;
+    border-radius: 5px;
+    margin: 0 auto 15px;
+    canvas {
+      // max-height: 70px;
+      margin-bottom: -6px;
+      border-radius: 0 0 5px 5px;
+    } 
+    .line__chart-header {
+        padding: 20px 20px 0px;
+        text-transform: uppercase;
+        font-size: 14px;
+      strong {
+           color: rgba(255,255,255,0.5);
+      }
+    }
+    .line__chart-data {
+        position: relative;
+        padding: 0 20px 20px;
+        font-size: 28px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        span {
+            font-size: 14px;
+        }
+        span:not(.arrow) {
+           position: absolute;
+           top: 11px;
+           left: 55px;
+        }
+    }
+  }
+  
+  .arrow {
+    position: relative;
+    left: 40px;
+    &:before {
+        content: "";
+        position: absolute;
+        width: 0; 
+        height: 0; 
+        transition: 0.3s;
+        right: -30px;
+        top: 2px;
+    }
+    &.Up {
+      &:before {
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-bottom: 7px solid green;
+      }
+    }
+    &.Down {
+      &:before {
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid red;
+      }
+    }
+  }
+  .leaderboard__wrapper {
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-radius: 4px;
+      -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      box-shadow: 0 1px 1px rgba(0,0,0,.05);
+  }
+  .leaderboard__title {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      margin-bottom: -1px;
+      border: 1px solid rgb(67, 72, 87);
+      border-radius: 3px 3px 0px 0px;
+  }
+  .leaderboard__result {
+      position: relative;
+      display: block;
+      padding: 10px 15px;
+      margin-bottom: -1px;
+      border: 1px solid rgb(67, 72, 87);
+      color: rgb(207, 210, 218);
+      transition: 0.3s;
+    
+      &:hover {
+          color: rgb(207, 210, 218);
+          text-decoration: none;
+          background-color: rgb(67, 72, 87);
+      }
+  }

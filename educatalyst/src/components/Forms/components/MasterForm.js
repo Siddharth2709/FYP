@@ -13,14 +13,16 @@ import {
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
-
+import { useNavigate, Link ,Route} from "react-router-dom";
 import styled from "styled-components";
 import MultiStepProgressBar from "./MultiStepProgressBar";
+
+
 
 class MasterForm extends Component {
   constructor(props) {
     super(props);
-
+    
     // Set the intiial input values
     this.state = {
       currentStep: 1,
@@ -29,6 +31,8 @@ class MasterForm extends Component {
       username: "",
       password: "",
       marks :[0,0,0,0],
+      questions:['q1','q2','q3','q4','q5'],
+       
     };
 
     // Bind the submission to handleChange()
@@ -102,13 +106,23 @@ console.log(this.state)}
   // Trigger an alert on form submission
   handleSubmit = event => {
     event.preventDefault();
+    
+    // let navigate = useNavigate()
     const { email, username, password } = this.state;
     alert(`Your registration detail: \n 
       Email: ${email} \n 
       Username: ${username} \n
       Password: ${password}`);
-  };
-
+    let details = this.state 
+    localStorage.setItem('details', details)
+    // navigate('/results')
+    this.props.navigate('/results')
+    };
+    routeChange=()=> {
+      let path = `newPath`;
+      let history = useNavigate();
+      history(path);
+    }
   // Test current step with ternary
   // _next and _previous functions will be called on button click
   _next() {
@@ -166,7 +180,7 @@ console.log(this.state)}
 
     // If the current step is the last step, then render the "submit" button
     if (currentStep > 2) {
-      return <Button color="primary float-right">Submit</Button>;
+      return <Button color="primary float-right"  onClick={this.handleSubmit}>Submit</Button>;
     }
     // ...else render nothing
     return null;
@@ -207,6 +221,7 @@ console.log(this.state)}
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
                 email={this.state.password}
+                questions={this.state.questions}
               />
             </CardBody>
             <CardFooter>
@@ -221,4 +236,9 @@ console.log(this.state)}
   }
 }
 
-export default MasterForm;
+function WithNavigate(props) {
+  let navigate = useNavigate();
+  return <MasterForm {...props} navigate={navigate} />
+}
+
+export default WithNavigate;

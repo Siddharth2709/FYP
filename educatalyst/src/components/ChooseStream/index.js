@@ -2,7 +2,8 @@ import React from 'react'
 //import '../style.css'
 import { useEffect, useState } from 'react'
 import Home from '../Home/index_alt';
-import MasterForm from '../Forms/components/MasterForm';
+import { BrowserRouter } from 'react-router-dom';
+import WithNavigate from '../Forms/components/MasterForm';
 const ChooseStream = () => {
 
     const [name , setName] = useState('John Doe')
@@ -24,7 +25,9 @@ const ChooseStream = () => {
     <br/>
     <h4>Please choose your Stream</h4>
     <br/>
-    <MasterForm/>
+ 
+    <WithNavigate/>
+    
     
     </div>
     </>

@@ -18,7 +18,8 @@ const Step2 = props => {
               <Input type = 'number' name= {sub} value = {props.getMarks}  min='0' max='100'  onChange={props.handleChange}/>
               
             </div>
-        })}
+        })} 
+        <Label > Time remaining for Test </Label>
         <Input
           type="text"
           name="username"
