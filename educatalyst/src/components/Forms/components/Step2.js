@@ -1,6 +1,6 @@
 import React from "react";
 import { FormGroup, Label, Input } from "reactstrap";
-
+import '../../Home/assets/css/style.css'
 const Step2 = props => {
   if (props.currentStep !== 2) {
     return null;
@@ -11,7 +11,9 @@ const Step2 = props => {
         <>
         {props.subjects.map((sub,index) => {
             // console.log('here', sub,index);
-            return <div>
+          
+            return <div className='col-md-6'>
+            
               <label> {sub}</label>
               <Input type = 'number' name= {testNo+sub} value = {props.getMarks}  min='0' max='100' default='20'  onChange={props.handleChange}/>
               
@@ -24,27 +26,41 @@ const Step2 = props => {
     <>
       <p>Enter the marks for test  </p>
       <FormGroup>
+        <div className='text-center'>
         <h1> Test 1</h1>
+        </div>
+        <div className='row' style={{paddingBottom:'40px'}}>
         {
         subjectList('1')
         
          }
-          <h1> Test 2</h1>
+         </div>
+         <div className='text-center' >
+          <h1> Test 2</h1></div>
+         <div className="row" style={{paddingBottom:'40px'}}>
         {
         subjectList('2')
         
          }
-          <h1> Test 3</h1>
+         </div>
+          <div className='text-center' >
+          <h1> Test 3</h1></div>
+          <div className='row' style={{paddingBottom:'40px'}}>
         {
         subjectList('3')
         
          }
-          <h1> Test 4</h1>
+         </div>
+           <div className='text-center' >
+          <h1> Test 4</h1></div>
+          <div className='row' style={{paddingBottom:'40px'}}>
         {
         subjectList('4')
         
          }
-        <Label > Time remaining for Test </Label>
+         </div>
+         
+        <Label style={{fontWeight:'500'}}> Time remaining for Test </Label>
         <Input
           type="text"
           name="username"

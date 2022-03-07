@@ -182,7 +182,7 @@ class MasterForm extends Component {
     // If the current step is not 3, then render the "next" button
     if (currentStep < 3) {
       return (
-        <Button color="primary float-right" onClick={this._next}>
+        <Button color="primary  ml-auto " onClick={this._next}>
           Next
         </Button>
       );

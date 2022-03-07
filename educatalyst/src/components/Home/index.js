@@ -37,11 +37,8 @@ const Home = () => {
 
   return (
     <div>
-        <div class='mainBody'>
 <h1>Educatalyst </h1>
 <h2>'Grab life by trust!'</h2>
-`
-    <img class="image" src="https://e7.pngegg.com/pngimages/280/670/png-clipart-student-course-credit-college-education-education-learning-stationery-elements-square-academic-cap-and-scroll-angle-people.png"/>
 
 <form  id="form" onsubmit="return false;">
         <label for="fname">Enter your First name: </label> 
@@ -72,7 +69,7 @@ Continue
 </button>
 
 </div>
-    </div>
+
   )
 }
 

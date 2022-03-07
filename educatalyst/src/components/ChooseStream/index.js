@@ -1,7 +1,8 @@
 import React from 'react'
-//import '../style.css'
+import './style.css'
+import '../Home/assets/css/style.css'
 import { useEffect, useState } from 'react'
-import Home from '../Home/index_alt';
+//import Home from '../Home/index_alt';
 import { BrowserRouter } from 'react-router-dom';
 import WithNavigate from '../Forms/components/MasterForm';
 const ChooseStream = () => {
@@ -17,14 +18,16 @@ const ChooseStream = () => {
 
   return (
       <>
-      <Home name={name}></Home>
-    <div>
-       
+     
+     <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-9 text-center">
+  
+          <h2>Help Us Know You Better!</h2>
+        </div>
+      </div>
     
-    <h3 id="userName"> Welcome  {name} </h3>
-    <br/>
-    <h4>Please choose your Stream</h4>
-    <br/>
+   
  
     <WithNavigate/>
     

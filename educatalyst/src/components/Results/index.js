@@ -2,6 +2,8 @@ import React from 'react'
 import { CChart } from '@coreui/react-chartjs'
 import {CTable,CTableCaption, CTableBody, CTableDataCell,CTableRow, CTableHeaderCell,CTableHead } from '@coreui/react'
 import { useEffect, useState } from 'react';
+import '../Home/assets/css/style.css'
+import CountUp from 'react-countup';
 const UIDashboard = () => {
   const [name, setName] = useState('Joe Doe')
   const [detail, setDetail] = useState({})
@@ -123,8 +125,79 @@ useEffect(() => {
 }, [predicted])
   return (
       <>
+         
+      <div class="row justify-content-center">
+        <div class="col-xl-7 col-lg-9 text-center">
+          <h1>Results</h1>
+         
+        </div>
+        <section id="counts" class="counts section-bg">
+      <div class="container">
+
+        <div class="row justify-content-end">
+
+          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+            <CountUp end={130}/>
+              <p>Happy Clients</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+            <CountUp end={5}/>
+              <p>Projects</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+            <CountUp end={10}/>
+              <p>Years of experience</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+            <CountUp end={25}/>
+              <p>Awards</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+      </div>
+     
     <div>
-<CChart
+    <section id="about-video" class="about-video">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+         
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            </ul>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+          <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+          <CChart
   type="bar"
   data={{
     labels: detail.stream,
@@ -138,8 +211,108 @@ useEffect(() => {
   }}
   labels="months"
 />
+          </div>
+        </div>
 
-<CChart
+      </div>
+    </section>
+    <section id="about-video" class="about-video">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+
+          <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
+          <CChart
+  type="line" 
+  data={{
+    labels: detail.stream,
+    datasets: [
+      {
+        label: "test 1",
+        backgroundColor: "rgba(220, 220, 220, 0.2)",
+        borderColor: "rgba(220, 220, 220, 1)",
+        pointBackgroundColor: "rgba(220, 220, 220, 1)",
+        pointBorderColor: "#fff",
+       data: score[1]
+        
+      },
+      {
+        label: "test 2",
+        backgroundColor: "rgba(151, 187, 205, 0.2)",
+        borderColor: "rgba(151, 187, 205, 1)",
+        pointBackgroundColor: "rgba(151, 187, 205, 1)",
+        pointBorderColor: "#fff",
+       data: score[2]
+        
+      },
+      {
+        label: "test 3",
+        backgroundColor: "rgba(151, 187, 205, 0.2)",
+        borderColor: "rgba(151, 187, 205, 1)",
+        pointBackgroundColor: "rgba(151, 187, 205, 1)",
+        pointBorderColor: "#fff",
+       data: score[3]
+        
+      },
+      {
+        label: "test 4",
+        backgroundColor: "rgba(151, 187, 205, 0.2)",
+        borderColor: "rgba(151, 187, 205, 1)",
+        pointBackgroundColor: "rgba(151, 187, 205, 1)",
+        pointBorderColor: "#fff",
+       data: score[4]
+        
+      },
+    ],
+  }}
+/>
+          </div>
+
+          <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <p class="fst-italic">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+              magna aliqua.
+            </p>
+            <ul>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
+              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            </ul>
+            <p>
+              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+              culpa qui officia deserunt mollit anim id est laborum
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    
+    <section id="team" class="team section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Team</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+
+          
+          
+
+         
+          </div>
+          
+    </div>
+      
+
+    <div className='container'>
+          <CChart
   type="scatter"
   data={{
     datasets: [{
@@ -224,53 +397,21 @@ useEffect(() => {
     pointRadius:7
   }}
 />
-<CChart
-  type="line" 
-  data={{
-    labels: detail.stream,
-    datasets: [
-      {
-        label: "test 1",
-        backgroundColor: "rgba(220, 220, 220, 0.2)",
-        borderColor: "rgba(220, 220, 220, 1)",
-        pointBackgroundColor: "rgba(220, 220, 220, 1)",
-        pointBorderColor: "#fff",
-       data: score[1]
-        
-      },
-      {
-        label: "test 2",
-        backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
-        pointBackgroundColor: "rgba(151, 187, 205, 1)",
-        pointBorderColor: "#fff",
-       data: score[2]
-        
-      },
-      {
-        label: "test 3",
-        backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
-        pointBackgroundColor: "rgba(151, 187, 205, 1)",
-        pointBorderColor: "#fff",
-       data: score[3]
-        
-      },
-      {
-        label: "test 4",
-        backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
-        pointBackgroundColor: "rgba(151, 187, 205, 1)",
-        pointBorderColor: "#fff",
-       data: score[4]
-        
-      },
-    ],
-  }}
-/>
-</div>
+</div>   
+</section>
+<section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+        <div class="text-center">
+          <h3>Call To Action</h3>
+          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a class="cta-btn" href="#">Call To Action</a>
+        </div>
+      </div>
+    </section>
+
 <div>
-<CTable color="dark" striped>
+  <div className='section-title text-center'><h2>Overveiw</h2></div>
+<CTable color="teal" striped>
   <CTableHead>
     <CTableRow>
       <CTableHeaderCell scope="col">#</CTableHeaderCell>
@@ -304,6 +445,7 @@ useEffect(() => {
     </CTableRow>
   </CTableBody>
 </CTable>
+    </div>
     </div>
     </>
   )
