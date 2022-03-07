@@ -18,7 +18,24 @@ const ChooseStream = () => {
 
   return (
       <>
+     <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">Educatalyst</a></h1>
      
+       <a href="/" class="logo"><img src="../Home/assets/img/logo.png" alt="" class="img-fluid"/></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          
+          <li><div > <a class='nav-link scrollto'>Signed In: {name}</a></div></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header>
      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
       <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-9 text-center">

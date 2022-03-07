@@ -19,24 +19,24 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
+         <div className='section-header'><h3>Login</h3></div> 
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-       <Home/>
+      
+       <Home setModal ={props.custom} setUserName={props.custom1}/>
       </Modal.Body>
-      <Modal.Footer>
-        <button onClick={props.onHide}>Close</button>
-      </Modal.Footer>
+      
     </Modal>
   );
 }
 
 
 const Hero = () => {
+  const [un, setUn ] = useState('John Doe')
+ 
   
-
+  const [modal,setModal] = useState(true)
   return (
     <>
     <header id="header" class="fixed-top">
@@ -52,7 +52,7 @@ const Hero = () => {
           <li><a class="nav-link scrollto" href="#about">About</a></li>
         
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+          <li><div onClick={() => {setModal(true)}}> <a class='nav-link scrollto'>Signed In: {un}</a></div></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
@@ -72,11 +72,13 @@ const Hero = () => {
       
       </div>
       {/* <button className='btn-get-started' name='btn' onClick={handleSubmit}> Click</button> */}
-      {/* { modal?
+      { modal?
       <MyVerticallyCenteredModal
         show={modal}
         onHide={() => setModal(false)}
-      />:<></>} */}
+        custom = {setModal}
+        custom1 ={setUn}
+      />:<></>}
       <div class="row icon-boxes">
         <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">
           <div class="icon-box">

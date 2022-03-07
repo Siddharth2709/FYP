@@ -216,7 +216,7 @@ class MasterForm extends Component {
       <>
         <Form onSubmit={this.handleSubmit}>
           <Card>
-            <CardHeader>Create an Account</CardHeader>
+            <CardHeader>Create an Student Profile</CardHeader>
             <CardBody>
               <CardTitle>
                 <MultiStepProgressBar currentStep={this.state.currentStep} />

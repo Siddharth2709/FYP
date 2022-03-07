@@ -15,7 +15,12 @@ const UIDashboard = () => {
   const [scatter3,setScatter3] = useState([0,0,0,0])
   const [scatter4,setScatter4] = useState([0,0,0,0])
   const [stream ,setStream] = useState(['','','',''])
+  const [minSub,setMinsub] = useState('')
   const [data,setData] = useState({'1':[],'2':[],'3':[],'4':[]})
+  const [growthfactor,setGrowf]= useState(0)
+  const [hrrem,setHrsrem] = useState(0)
+  const [scaleDn, setScaleDN] = useState(0)
+  const [perc,setPerc] = useState(0) 
   useEffect(()=>{
      let details = localStorage.getItem('details');
      console.log('%%%',details)
@@ -27,6 +32,7 @@ const UIDashboard = () => {
      console.log('empty?',detail)
      setDetail(dp)
      setStream(dp.stream)
+     let perc = 0
      for(let i =0 ; i <4 ; i++ ){
       let avg_sub_0 = 0 
       let marks = dp.test_score
@@ -35,9 +41,15 @@ const UIDashboard = () => {
       
        let avgs = avgMarks
        avgs[i] = avg_sub_0/4
+       perc = perc+ avg_sub_0/4
        setAvgMarks(avgs)
        SetScores(marks)
       }
+      const min = Math.min(...avgMarks);
+      const index = avgMarks.indexOf(min);
+      console.log('MINNNN SUBB', stream[index])
+      setMinsub(stream[index])
+      setPerc(perc/400 *100)
       setScatter1(dp.test_score[1])
       setScatter2(dp.test_score[2])
       setScatter3(dp.test_score[3])
@@ -46,12 +58,15 @@ const UIDashboard = () => {
      for(let i =0; i<4; i++){
      let ms = avgMarks[i]
      let hrs = dp.hrs
+     setHrsrem(hrs)
+
      let per_sub = hrs/4
      let percentage_hrs = per_sub/735
      let growth_eff = ms/percentage_hrs
      let ideal_factor = 7.35
      let af = ideal_factor/growth_eff
      let gf = dp.username/af
+     setGrowf(gf)
      let scdf = 0 
      
      if (ms <30){
@@ -84,11 +99,13 @@ const UIDashboard = () => {
     else  if(95 <ms && ms <100){
        scdf =14
     }
+    setScaleDN(scdf)
     let pim = gf/scdf
     let new_pred = predicted
     new_pred[i] = pim
     setPredicted(new_pred)}
     console.log(predicted)
+    
      //getAvg()
          // do stuff here...
   }, [])
@@ -125,7 +142,24 @@ useEffect(() => {
 }, [predicted])
   return (
       <>
-         
+         <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="/">Educatalyst</a></h1>
+     
+      <a href="/" class="logo"><img src="../Home/assets/img/logo.png" alt="" class="img-fluid"/></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
+          
+          <li><div > <a class='nav-link scrollto'>Signed In: {name}</a></div></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+
+    </div>
+  </header>
       <div class="row justify-content-center">
         <div class="col-xl-7 col-lg-9 text-center">
           <h1>Results</h1>
@@ -138,29 +172,29 @@ useEffect(() => {
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
-            <CountUp end={130}/>
-              <p>Happy Clients</p>
+            <CountUp end={growthfactor}/>
+              <p>Growth Factor</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
-            <CountUp end={5}/>
-              <p>Projects</p>
+            <CountUp end={scaleDn}/>
+              <p>Scale Down Factor</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
-            <CountUp end={10}/>
-              <p>Years of experience</p>
+            <CountUp end={hrrem}/>
+              <p>Effective Hours Remaining</p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
-            <CountUp end={25}/>
-              <p>Awards</p>
+            <CountUp end={perc}/>
+              <p>Percentage</p>
             </div>
           </div>
 
@@ -179,21 +213,18 @@ useEffect(() => {
          
 
           <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Analyze your strength and weakness</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+            If you too have 'Can do better' remarks on your report card. Follow these steps
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="bx bx-check-double"></i> 1. Discuss your doubts with teachers. </li>
+              <li><i class="bx bx-check-double"></i> 2. Work on improving your weak areas. </li>
+              <li><i class="bx bx-check-double"></i> 3. Choose a correct and organised strategy for studying</li>
+             
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+            Students need to work hard as well as smartly for getting good marks in their exams.Strategy should be adopting effective learning strategy and give their best performance. The tips and tricks mentioned here will be helpful for them to get good marks and get a level above average category if they utilise it effectively.
             </p>
           </div>
           <div class="col-lg-6 video-box align-self-baseline" data-aos="fade-right" data-aos-delay="100">
@@ -230,7 +261,7 @@ useEffect(() => {
       {
         label: "test 1",
         backgroundColor: "rgba(220, 220, 220, 0.2)",
-        borderColor: "rgba(220, 220, 220, 1)",
+        borderColor: "rgba(245, 40, 145, 0.8)",
         pointBackgroundColor: "rgba(220, 220, 220, 1)",
         pointBorderColor: "#fff",
        data: score[1]
@@ -239,7 +270,7 @@ useEffect(() => {
       {
         label: "test 2",
         backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
+        borderColor: "rgba(98, 209, 215, 1)",
         pointBackgroundColor: "rgba(151, 187, 205, 1)",
         pointBorderColor: "#fff",
        data: score[2]
@@ -248,7 +279,7 @@ useEffect(() => {
       {
         label: "test 3",
         backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
+        borderColor: "rgba(72, 236, 142, 1)",
         pointBackgroundColor: "rgba(151, 187, 205, 1)",
         pointBorderColor: "#fff",
        data: score[3]
@@ -257,7 +288,7 @@ useEffect(() => {
       {
         label: "test 4",
         backgroundColor: "rgba(151, 187, 205, 0.2)",
-        borderColor: "rgba(151, 187, 205, 1)",
+        borderColor: "rgba(246, 160, 21, 1)",
         pointBackgroundColor: "rgba(151, 187, 205, 1)",
         pointBorderColor: "#fff",
        data: score[4]
@@ -269,21 +300,16 @@ useEffect(() => {
           </div>
 
           <div class="col-lg-6 pt-3 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>Track your performance in previous tests.</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+            Tracking students is essential, especially in modern times where students are behind and the race to catch up is on.
             </p>
             <ul>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bx bx-check-double"></i> Voluptate repellendus pariatur reprehenderit corporis sint.</li>
-              <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
+              <li><i class="bx bx-check-double"></i> 1. Find precisely where individual students are in their learning against a set of learning intentions and success criteria</li>
+              <li><i class="bx bx-check-double"></i> 2. Help students know what their next steps in learning are, which facilitates significant increases in their students’ achievements</li>
+              </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+            Tracking students also means you can quickly identify at risk. By monitoring all students you can ensure that no student ‘slips through the gap’. If any student requires extensions or additional support, these needs can be identified.
             </p>
           </div>
 
@@ -296,8 +322,8 @@ useEffect(() => {
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Team</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Predicted Marks</h2>
+          <p> Showing predicted marks using advanced statistics</p>
         </div>
 
         <div class="row">
@@ -403,14 +429,14 @@ useEffect(() => {
       <div class="container" data-aos="zoom-in">
         <div class="text-center">
           <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn" href="#">Call To Action</a>
+          <p>You need to work more on <span className='strong'>{minSub.toUpperCase()}</span>. You have scored lowest in this subject</p>
+         
         </div>
       </div>
     </section>
 
 <div>
-  <div className='section-title text-center'><h2>Overveiw</h2></div>
+  <div className='section-title text-center' style={{paddingTop:'50px'}}><h2>Overveiw</h2></div>
 <CTable color="teal" striped>
   <CTableHead>
     <CTableRow>

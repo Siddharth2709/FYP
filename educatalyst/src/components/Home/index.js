@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate} from 'react-router-dom';
 
 
-const Home = () => {
+const Home = (props) => {
 
     const [firstName, setFirstName] = useState('John')
     const [lastName,setLastName] = useState('Doe')
@@ -31,17 +31,18 @@ const Home = () => {
         e.preventDefault()
         localStorage.setItem('firstName', firstName)
         localStorage.setItem('lastName', lastName)
-        let path = `/chooseStream`; 
-      navigate(path);
+        props.setModal(false)
+        let name = firstName + ' ' + lastName
+        props.setUserName(name)
+        //props.setUserName(name)
+      //   let path = `/chooseStream`; 
+      // navigate(path);
     } 
 
   return (
     <div>
-<h1>Educatalyst </h1>
-<h2>'Grab life by trust!'</h2>
-
-<form  id="form" onsubmit="return false;">
-        <label for="fname">Enter your First name: </label> 
+<form  id="form" onsubmit="return false;" style={{paddingBottom:'30px'}}>
+        <label for="fname" >Enter your First name: </label> 
         <input
               autoComplete="off"
               className="form-control"
@@ -50,9 +51,10 @@ const Home = () => {
               onChange={handleChange}
               value={firstName}
               required
+              
             />
-  <br/><br/>
-    <label for="lname">Enter your Last name: </label> 
+ 
+    <label for="lname" style={{paddingTop:'30px'}}>Enter your Last name: </label> 
     <input
               autoComplete="off"
               className="form-control"
@@ -61,10 +63,10 @@ const Home = () => {
               onChange={handleChange}
               value={lastName}
               required
-            /><br/><br/>
+            />
 </form>
 
-<button class="btn btn-outline-secondary" onClick={handleSubmit}>
+<button class="btn btn-outline-secondary" onClick={handleSubmit} >
 Continue
 </button>
 
