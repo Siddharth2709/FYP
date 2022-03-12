@@ -3,6 +3,8 @@ import { CChart } from '@coreui/react-chartjs'
 import {CTable,CTableCaption, CTableBody, CTableDataCell,CTableRow, CTableHeaderCell,CTableHead } from '@coreui/react'
 import { useEffect, useState } from 'react';
 import '../Home/assets/css/style.css'
+import ScienceImg from '../../assets/science.jpg'
+import ScienceAltImg from '../../assets/science_alt.jpg'
 import CountUp from 'react-countup';
 const UIDashboard = () => {
   const [name, setName] = useState('Joe Doe')
@@ -21,7 +23,10 @@ const UIDashboard = () => {
   const [hrrem,setHrsrem] = useState(0)
   const [scaleDn, setScaleDN] = useState(0)
   const [perc,setPerc] = useState(0) 
-  const [stream_matrix,setStream_matrix]= useState({})
+  const [stream_matrix,setStream_matrix]= useState([])
+  const [stream_other, setStreamOther] = useState([])
+  const [stream_img_main, setImageM] = useState({})
+  const [stream_img_other,setImageO] = useState({})
   useEffect(()=>{
      let details = localStorage.getItem('details');
      console.log('%%%',details)
@@ -94,32 +99,53 @@ const UIDashboard = () => {
     let subject_choosen = localStorage.getItem('sub')
     let survey  = JSON.parse(localStorage.getItem('survey_subjects'))
     console.log(survey["Quality"])
+    survey = survey['Quality']
     let pred_stream =[]
+    let other_stream =[]
     if (subject_choosen ==='science'){
-       pred_stream = ['General Engineering Branches', 'Bachelor of Science']
-     if(survey.maths ===0 && survey.bio ===0 && survey.chem ===0){
+      setImageM(ScienceImg)
+      setImageO(ScienceAltImg)
+       pred_stream = ['Core Engineering Branches', 'Bachelor of Science']
+  
+     if(survey.maths ===0 && survey.bio ===0 && survey.chemistry ===0){
          pred_stream = ['biotechnology', 'genetic engineering', 'Bioinformatics']
     }
-    if(survey.maths ===0 && survey.physics ===0 && survey.chem ===0){
+    else if(survey.maths ===0 && survey.physics ===0 && survey.chemistry ===0){
        pred_stream = ['Civil Engineering','Mechanical Engineering']
     }
-    if(survey.maths ===0 && survey.cs===0 && survey.electronic ===0){
+    else if(survey.maths ===0 && survey.cs===0 && survey.electronic ===0){
        pred_stream = ['robotics', 'mechatronics', 'electronincs engineering']
     }
-    if (survey.maths === 2 && survey.bio ===0){
+    else if(survey.maths ===0 && survey.bio ===0){
+      pred_stream =['Genetic Engineering','biotechnology']
+    }
+   else  if (survey.maths === 2 && survey.bio ===0){
        pred_stream =['Medicines', 'MBBS','biotechnology']
     }
-    if (survey.cs ===0) {
-       pred_stream = ['Computer Science Engineering', 'Information Technology' ]
+    else if (survey.cs ===0) {
+       pred_stream = pred_stream.push(['Computer Science Engineering', 'Information Technology' ])
     }
-    if(survey.cs===0 || survey.physics===0){
-       pred_stream = ['Electronics and Telecommunication']
+    else if(survey.cs===0 || survey.physics===0 ||  survey.electronic===0){
+       pred_stream = ['Electronics and Telecommunications']
     }
-    if(survey.cs===0 || survey.electronic===0){
-       pred_stream = ['Electronics and Telecommunication']
+    // if(survey.cs===0 || survey.electronic===0){
+    //    pred_stream = ['Electronics and Telecommunication']
+    // }
+    if(survey.maths ===2){
+      other_stream = ['stream without math 1', 'stream without math 2','...']
     }
-    
+    else if(survey.bio ===2){
+      other_stream = ['stream without bio 1', 'stream without bio 2','...']
+    }
+    else if(survey.cs ===2){
+      other_stream = ['stream without cs', 'stream without cs 2']
+    }
+    else if(survey.physics ===2){
+      other_stream = ['stream without physics', 'stream without physics 2']
+    }
   }
+  setStreamOther(other_stream)
+  setStream_matrix(pred_stream)
   console.log('here',pred_stream)
     for(let i =0; i<4; i++){
       let ms = avgMarks[i]
@@ -372,46 +398,29 @@ useEffect(() => {
 
         <div class="row">
 
-          <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
-            <div class="box">
-              <h3>Others</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <ul>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li class="na">Stream X</li>
-                <li class="na">Stream X</li>
-              </ul>
-              
-            </div>
-          </div>
+         
 
-          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-6 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="box featured">
-              <h3>Recommended</h3>
-              <h4><sup>$</sup>19<span> / month</span></h4>
-              <ul>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li class="na">Stream X</li>
-                <li class="na">Stream X</li>
+              <h3 style={{fontSize:'20px'}}>Recommended</h3>
+             <img src={stream_img_main} alt='science'></img>
+              <ul style={{paddingTop:'20px'}}>
+                { stream_matrix.map((obj,index) => {
+                  return <li> <h5>{obj}</h5> </li>
+                })}
               </ul>
               
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-6 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <h3>Not Intersted</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
-              <ul>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li>Stream X</li>
-                <li class="na">Stream X</li>
-                <li class="na">Stream X</li>
+              <h3 style={{fontSize:'20px'}}>Other Available Streams</h3>
+              <img src={stream_img_other} alt='science'></img>
+              <ul style={{paddingTop:'20px'}}>
+              { stream_other.map((obj,index) => {
+                  return <li> <h5>{obj}</h5> </li>
+                })}
               </ul>
               
             </div>
