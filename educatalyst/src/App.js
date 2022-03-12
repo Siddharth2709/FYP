@@ -6,6 +6,8 @@ import ChooseStream from './components/ChooseStream/index';
 import {Navbar, Container} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UIDashboard from './components/Results/index';
+
+//code cleanup and testing begins
 function App() {
   return (
    <>
