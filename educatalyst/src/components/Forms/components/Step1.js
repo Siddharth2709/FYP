@@ -44,10 +44,10 @@ const Step1 = props => {
     <label for="c"><img src={science} alt=''/></label>
 </div>
 </div>
- <div className='col-md-12 text-center' style={{paddingTop:'30px'}}>
+ {/* <div className='col-md-12 text-center' style={{paddingTop:'30px'}}>
     <label style={{paddingRight:'10px', fontWeight:'500'}}> No of hours studied</label>
     <input type='number' name ='hrs' value ={props.getHrs} onChange={props.handleChange}></input>
-    </div>
+    </div> */}
     </div>
       </FormGroup>
     </>

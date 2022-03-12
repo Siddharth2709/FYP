@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,900);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+$font-stack: Lato, sans-serif;
+$bg-color: #333;
+$red:   #F65C54;
+$green: #43B39B;
+$blue:  #69AAE0;
+
+
+hr {
+  margin: 2rem 0;
+  opacity: 0.4;
+}
+
+// Buttons:
+.btn-radio {
+  background-color: $green !important;
+  border: none !important;
+  border-radius: 4px !important;
+  color: white !important;
+  display: inline-block !important;
+  font-family: $font-stack !important;
+  font-size: 0.2rem !important;
+  cursor: pointer !important;
+  padding: 0.81rem 1.62rem !important;
+  margin-right: 5rem !important;
+  opacity: 0.85 !important;
+  
+  &--no  {
+    background-color: $red !important;
+  }
+  
+  &--yes {
+    
+    // Yes is the default button style
+  }
+  
+  &--yes,
+  &--no {
+    border-radius: 60% !important;
+    padding: 0.3rem !important;
+  }
+  
+  &--right {
+    float: right !important;
+    margin-right: 0 !important;
+  }
+  
+  &:hover,
+  &:focus {
+    opacity: 1 !important;
+    outline: none !important;
+  }
+}
+
+label.btn {
+  opacity: 0.3 !important;
+}
+
+// Slightly highlight on hover / focus:
+label.btn:hover,
+input:focus + label.btn {
+    opacity: 0.7 !important;
+}
+
+// On focus (keyboard navigation), show
+// the expected outline:
+input:focus + label.btn {
+    outline: thin dotted !important;
+}
+
+// Highlight fully when checked:s
+input:checked + label.btn {
+  opacity: 1 !important;
+}
+
+.is-hidden {
+  opacity: 0 !important;
+  position: absolute !important;
+}

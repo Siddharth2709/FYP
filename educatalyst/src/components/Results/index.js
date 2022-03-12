@@ -21,6 +21,7 @@ const UIDashboard = () => {
   const [hrrem,setHrsrem] = useState(0)
   const [scaleDn, setScaleDN] = useState(0)
   const [perc,setPerc] = useState(0) 
+  const [stream_matrix,setStream_matrix]= useState({})
   useEffect(()=>{
      let details = localStorage.getItem('details');
      console.log('%%%',details)
@@ -55,56 +56,8 @@ const UIDashboard = () => {
       setScatter3(dp.test_score[3])
       setScatter4(dp.test_score[4])
      console.log(avgMarks)
-     for(let i =0; i<4; i++){
-     let ms = avgMarks[i]
-     let hrs = dp.hrs
-     setHrsrem(hrs)
-
-     let per_sub = hrs/4
-     let percentage_hrs = per_sub/735
-     let growth_eff = ms/percentage_hrs
-     let ideal_factor = 7.35
-     let af = ideal_factor/growth_eff
-     let gf = dp.username/af
-     setGrowf(gf)
-     let scdf = 0 
      
-     if (ms <30){
-       scdf =2;
-     } 
-     else if(30 < ms && ms <40){
-        scdf =2.5   
-     }
-     else if(40 <ms && ms <50){
-       scdf =1.1
-    }
-    else if(50 <ms && ms <60){
-       scdf =1.75
-    }
-    else if(60 <ms && ms <74){
-       scdf =2.25
-    }
-    else if(75 <ms && ms <80){
-       scdf =3
-    }
-    else if(80 <ms && ms <85){
-       scdf =4
-    }
-    else if(85 <ms && ms <90){
-       scdf =6
-    }
-    else if(90 <ms && ms <95){
-       scdf =9
-    }
-    else  if(95 <ms && ms <100){
-       scdf =14
-    }
-    setScaleDN(scdf)
-    let pim = gf/scdf
-    let new_pred = predicted
-    new_pred[i] = pim
-    setPredicted(new_pred)}
-    console.log(predicted)
+    console.log('predicted',predicted)
     
      //getAvg()
          // do stuff here...
@@ -136,7 +89,98 @@ const UIDashboard = () => {
   // }, [detail])
   useEffect(() => {
     console.log('updated again avgmarks', avgMarks)
-}, [avgMarks])
+    let details = localStorage.getItem('details');
+    let dp = detail
+    let subject_choosen = localStorage.getItem('sub')
+    let survey  = JSON.parse(localStorage.getItem('survey_subjects'))
+    console.log(survey["Quality"])
+    let pred_stream =[]
+    if (subject_choosen ==='science'){
+       pred_stream = ['General Engineering Branches', 'Bachelor of Science']
+     if(survey.maths ===0 && survey.bio ===0 && survey.chem ===0){
+         pred_stream = ['biotechnology', 'genetic engineering', 'Bioinformatics']
+    }
+    if(survey.maths ===0 && survey.physics ===0 && survey.chem ===0){
+       pred_stream = ['Civil Engineering','Mechanical Engineering']
+    }
+    if(survey.maths ===0 && survey.cs===0 && survey.electronic ===0){
+       pred_stream = ['robotics', 'mechatronics', 'electronincs engineering']
+    }
+    if (survey.maths === 2 && survey.bio ===0){
+       pred_stream =['Medicines', 'MBBS','biotechnology']
+    }
+    if (survey.cs ===0) {
+       pred_stream = ['Computer Science Engineering', 'Information Technology' ]
+    }
+    if(survey.cs===0 || survey.physics===0){
+       pred_stream = ['Electronics and Telecommunication']
+    }
+    if(survey.cs===0 || survey.electronic===0){
+       pred_stream = ['Electronics and Telecommunication']
+    }
+    
+  }
+  console.log('here',pred_stream)
+    for(let i =0; i<4; i++){
+      let ms = avgMarks[i]
+      
+      let hrs = dp.hrs
+      setHrsrem( dp.username)
+      let sub = stream[i]+ 'time_studied'
+      let hrs_per_sub = parseInt(dp[sub ])
+      console.log(hrs_per_sub)
+      let days_remaining = 15
+      console.log(days_remaining)
+      let hrs_rem = parseInt(days_remaining) *14
+      console.log('hrs_rem', hrs_rem)
+      let percentage_hrs = (hrs_per_sub/hrs_rem) * 100
+       console.log('percentage_hrs',percentage_hrs)
+      let growth_eff = ms/percentage_hrs
+      console.log('growth_eff',growth_eff)
+      let ideal_factor = 7.35
+      let af = ideal_factor/growth_eff
+      let gf = (hrs_per_sub/4)/af 
+      setHrsrem((hrs_per_sub).toFixed(1))
+      setGrowf(gf)
+      let scdf = 0 
+      
+      if (ms <30){
+        scdf =2;
+      } 
+      else if(30 < ms && ms <40){
+         scdf =2.5   
+      }
+      else if(40 <ms && ms <50){
+        scdf =1.1
+     }
+     else if(50 <ms && ms <60){
+        scdf =1.75
+     }
+     else if(60 <ms && ms <74){
+        scdf =2.25
+     }
+     else if(75 <ms && ms <80){
+        scdf =3
+     }
+     else if(80 <ms && ms <85){
+        scdf =4
+     }
+     else if(85 <ms && ms <90){
+        scdf =6
+     }
+     else if(90 <ms && ms <95){
+        scdf =9
+     }
+     else  if(95 <ms && ms <100){
+        scdf =14
+     }
+     setScaleDN(scdf)
+     let pim = gf/scdf
+     let new_pred = predicted
+     new_pred[i] = (pim+ms).toFixed(2)
+     setPredicted(new_pred)}
+}, [avgMarks]);
+
 useEffect(() => {
   console.log('updated again', predicted)
 }, [predicted])
@@ -318,113 +362,65 @@ useEffect(() => {
       </div>
     </section>
     
-    <section id="team" class="team section-bg">
+    <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Predicted Marks</h2>
-          <p> Showing predicted marks using advanced statistics</p>
+          <h2>Predicted Stream</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
         <div class="row">
 
-          
-          
-
-         
+          <div class="col-lg-4 col-md-6" data-aos="zoom-im" data-aos-delay="100">
+            <div class="box">
+              <h3>Others</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li class="na">Stream X</li>
+                <li class="na">Stream X</li>
+              </ul>
+              
+            </div>
           </div>
-          
-    </div>
-      
 
-    <div className='container'>
-          <CChart
-  type="scatter"
-  data={{
-    datasets: [{
-      label: 'Test 1',
-      data: [{
-        x: 1,
-        y: scatter1[0]
-      }, {
-        x: 2,
-        y: scatter1[1]
-      }, {
-        x: 3,
-        y: scatter1[2]
-      }, {
-        x: 4,
-        y: scatter1[3]
-      }],
-      backgroundColor: 'rgb(255, 99, 132)'
-    }
-    ,
-    {
-      label: 'Test 2',
-      data:[{
-        x: 1,
-        y: scatter2[0]
-      }, {
-        x: 2,
-        y: scatter2[1]
-      }, {
-        x: 3,
-        y: scatter2[2]
-      }, {
-        x: 4,
-        y: scatter2[3]
-      }],
-      backgroundColor: 'rgb(255, 0, 255)'
-    },
-    {
-      label: 'Test 3',
-      data: [{
-        x: 1,
-        y: scatter3[0]
-      }, {
-        x: 2,
-        y: scatter3[1]
-      }, {
-        x: 3,
-        y: scatter3[2]
-      }, {
-        x: 4,
-        y: scatter3[3]
-      }],
-      backgroundColor: 'rgb(0, 99, 0)'
-    },
-    {
-      label: 'Test 4',
-      data: [{
-        x: 1,
-        y: scatter4[0]
-      }, {
-        x: 2,
-        y: scatter4[1]
-      }, {
-        x: 3,
-        y: scatter4[2]
-      }, {
-        x: 4,
-        y: scatter4[3]
-      }],
-      backgroundColor: 'rgb(0, 99, 0)'
-    }
-  ],
-  }}
-  options={{
-    scales: {
-      x: {
-        type: 'linear',
-        position: 'bottom'
-      }
-      
-    },
-    pointRadius:7
-  }}
-/>
-</div>   
-</section>
+          <div class="col-lg-4 col-md-6 mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box featured">
+              <h3>Recommended</h3>
+              <h4><sup>$</sup>19<span> / month</span></h4>
+              <ul>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li class="na">Stream X</li>
+                <li class="na">Stream X</li>
+              </ul>
+              
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <h3>Not Intersted</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li>Stream X</li>
+                <li class="na">Stream X</li>
+                <li class="na">Stream X</li>
+              </ul>
+              
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
 <section id="cta" class="cta">
       <div class="container" data-aos="zoom-in">
         <div class="text-center">

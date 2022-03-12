@@ -31,7 +31,7 @@ class MasterForm extends Component {
       username: "",
       password: "",
       marks :[0,0,0,0],
-      questions:['q1','q2','q3','q4','q5'],
+      questions:['q1','q2','q3'],
       test_score:{1:[],2:[],3:[],4:[]},   
       hrs:490, 
     };
@@ -66,18 +66,22 @@ class MasterForm extends Component {
           [name]: value,
           stream: ['Physics', 'Chemistry', 'Maths', 'Bio']
         })
+        localStorage.setItem('sub','science')
       }
       if (value ==='b'){
         this.setState({
           [name]: value,
           stream: ['Accounts', 'Finance', 'Audits', 'Taxes']
         })
+        localStorage.setItem('sub','commerce')
       }
       if (value ==='c'){
         this.setState({
           [name]: value,
           stream: ['History', 'Civics', 'Geography', 'Polity']
+          
         })
+        localStorage.setItem('sub','arts')
       }
     }
     else{
@@ -214,8 +218,11 @@ class MasterForm extends Component {
   render() {
     return (
       <>
+      <br></br>
+      <br></br>
         <Form onSubmit={this.handleSubmit}>
           <Card>
+
             <CardHeader>Create an Student Profile</CardHeader>
             <CardBody>
               <CardTitle>
