@@ -51,7 +51,7 @@ const Hero = () => {
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
         
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="mailto:arppitmadankar@gmail.com?subject=Business%20Enquiry%20for%20Educatalyst&body=Hello!%20Great%20work.%20">Contact</a></li>
           <li><div onClick={() => {setModal(true)}}> <a class='nav-link scrollto'>Signed In: {un}</a></div></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>

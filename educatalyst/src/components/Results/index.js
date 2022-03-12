@@ -241,7 +241,7 @@ const UIDashboard = () => {
   console.log('here',pred_stream)
     for(let i =0; i<4; i++){
       let ms = avgMarks[i]
-      
+      console.log('Average Marks',ms )
       let hrs = dp.hrs
       setHrsrem( dp.time_left)
       let sub = stream[i]+ 'time_studied'
@@ -258,7 +258,7 @@ const UIDashboard = () => {
       let ideal_factor = 7.35
       let af = ideal_factor/growth_eff
       let gf = (hrs_per_sub/4)/af 
-      setHrsrem((hrs_per_sub).toFixed(1))
+      setHrsrem((hrs_rem).toFixed(1))
       setGrowf(gf)
       let scdf = 0 
       
@@ -268,22 +268,22 @@ const UIDashboard = () => {
       else if(30 < ms && ms <40){
          scdf =2.5   
       }
-      else if(40 <ms && ms <50){
+      else if(39 <ms && ms <50){
         scdf =1.1
      }
-     else if(50 <ms && ms <60){
+     else if(49 <ms && ms <60){
         scdf =1.75
      }
-     else if(60 <ms && ms <74){
+     else if(59 <ms && ms <75){
         scdf =2.25
      }
-     else if(75 <ms && ms <80){
+     else if(74 <ms && ms <80){
         scdf =3
      }
-     else if(80 <ms && ms <85){
+     else if(79 <ms && ms <85){
         scdf =4
      }
-     else if(85 <ms && ms <90){
+     else if(84 <ms && ms <90){
         scdf =6
      }
      else if(90 <ms && ms <95){
@@ -344,21 +344,21 @@ useEffect(() => {
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
             <CountUp end={scaleDn}/>
-              <p>Scale Down Factor</p>
+              <p>Scale Down Factor <span style={{fontSize:'10px'}}> Negative Coefficient of performance. </span></p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
             <CountUp end={hrrem}/>
-              <p>Effective Hours Remaining</p>
+              <p>Effective Hours Remaining  <span style={{fontSize:'10px'}}> Calculated 14 hrs per day</span></p>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
             <CountUp end={perc}/>
-              <p>Percentage</p>
+              <p>Percentage <span style={{fontSize:'10px'}}> Overall percentage % across all test</span></p>
             </div>
           </div>
 
