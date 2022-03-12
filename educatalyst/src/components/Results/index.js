@@ -6,6 +6,10 @@ import '../Home/assets/css/style.css'
 import ScienceImg from '../../assets/science.jpg'
 import ScienceAltImg from '../../assets/science_alt.jpg'
 import CountUp from 'react-countup';
+import CommerceImg from '../../assets/commerce.jpg'
+import CommerceAltImg from '../../assets/commerce_alt.jpg'
+import ArtsImg from '../../assets/arts.jpg'
+import ArtsAltImg from '../../assets/arts_alt.jpg'
 const UIDashboard = () => {
   const [name, setName] = useState('Joe Doe')
   const [detail, setDetail] = useState({})
@@ -27,6 +31,7 @@ const UIDashboard = () => {
   const [stream_other, setStreamOther] = useState([])
   const [stream_img_main, setImageM] = useState({})
   const [stream_img_other,setImageO] = useState({})
+  
   useEffect(()=>{
      let details = localStorage.getItem('details');
      console.log('%%%',details)
@@ -102,9 +107,96 @@ const UIDashboard = () => {
     survey = survey['Quality']
     let pred_stream =[]
     let other_stream =[]
+    // survey.subject_name ===0 for strongly agree 1 for nuetral and 2 for disagree
     if (subject_choosen ==='science'){
       setImageM(ScienceImg)
       setImageO(ScienceAltImg)
+       pred_stream = ['Core Engineering Branches', 'Bachelor of Science']
+  
+     if(survey.maths ===0 && survey.bio ===0 && survey.chemistry ===0){
+         pred_stream = ['biotechnology', 'genetic engineering', 'Bioinformatics']
+    }
+    else if(survey.maths ===0 && survey.physics ===0 && survey.chemistry ===0){
+       pred_stream = ['Civil Engineering','Mechanical Engineering']
+    }
+    else if(survey.maths ===0 && survey.cs===0 && survey.electronic ===0){
+       pred_stream = ['robotics', 'mechatronics', 'electronincs engineering']
+    }
+    else if(survey.maths ===0 && survey.bio ===0){
+      pred_stream =['Genetic Engineering','biotechnology']
+    }
+   else  if (survey.maths === 2 && survey.bio ===0){
+       pred_stream =['Medicines', 'MBBS','biotechnology']
+    }
+    else if (survey.cs ===0) {
+       pred_stream = pred_stream.push(['Computer Science Engineering', 'Information Technology' ])
+    }
+    else if(survey.cs===0 || survey.physics===0 ||  survey.electronic===0){
+       pred_stream = ['Electronics and Telecommunications']
+    }
+    // if(survey.cs===0 || survey.electronic===0){
+    //    pred_stream = ['Electronics and Telecommunication']
+    // }
+    if(survey.maths ===2){
+      other_stream = ['stream without math 1', 'stream without math 2','...']
+    }
+    else if(survey.bio ===2){
+      other_stream = ['stream without bio 1', 'stream without bio 2','...']
+    }
+    else if(survey.cs ===2){
+      other_stream = ['stream without cs', 'stream without cs 2']
+    }
+    else if(survey.physics ===2){
+      other_stream = ['stream without physics', 'stream without physics 2']
+    }
+  }
+  
+  else if (subject_choosen ==='commerce'){
+    //set images through here
+    setImageM(CommerceImg)
+      setImageO(CommerceAltImg)
+       pred_stream = ['Bachelors of Business Administration', 'Bachelor of Science']
+    //survey is object , set  use .subject name from 'Matrix js'
+     if(survey.accounts ===0 && survey.taxes ===0 && survey.audits ===0){
+         pred_stream = ['Chartered Accountant', 'Or other related', 'Accounts heavy subject']
+    }
+    else if(survey.business ===0 && survey.taxes ===0 && survey.finance ===0){
+       pred_stream = ['Chartered Finance Accountant','or other streams', 'add here']
+    }
+    else if(survey.maths ===0 && survey.accounts===0 ){
+       pred_stream = ['Portfolio manager', 'Risk Manager', 'or any number of field']
+    }
+    else if(survey.business ===0 && survey.finance ===0){
+      pred_stream =['Integrated MBA+BBA','MBA']
+    }
+   else  if (survey.maths === 2 && survey.bio ===0){
+       pred_stream =['Medicines', 'MBBS','biotechnology']
+    }
+    else if (survey.cs ===0) {
+       pred_stream = pred_stream.push(['Computer Science Engineering', 'Information Technology' ])
+    }
+    else if(survey.cs===0 || survey.physics===0 ||  survey.electronic===0){
+       pred_stream = ['Electronics and Telecommunications']
+    }
+    // if(survey.cs===0 || survey.electronic===0){
+    //    pred_stream = ['Electronics and Telecommunication']
+    // }
+    if(survey.maths ===2){
+      other_stream = ['stream without math 1', 'stream without math 2','...']
+    }
+    else if(survey.bio ===2){
+      other_stream = ['stream without bio 1', 'stream without bio 2','...']
+    }
+    else if(survey.cs ===2){
+      other_stream = ['stream without cs', 'stream without cs 2']
+    }
+    else if(survey.physics ===2){
+      other_stream = ['stream without physics', 'stream without physics 2']
+    }
+  }
+  else if (subject_choosen ==='arts'){
+    setImageM(ArtsImg)
+      setImageO(ArtsAltImg)
        pred_stream = ['Core Engineering Branches', 'Bachelor of Science']
   
      if(survey.maths ===0 && survey.bio ===0 && survey.chemistry ===0){
@@ -151,11 +243,11 @@ const UIDashboard = () => {
       let ms = avgMarks[i]
       
       let hrs = dp.hrs
-      setHrsrem( dp.username)
+      setHrsrem( dp.time_left)
       let sub = stream[i]+ 'time_studied'
       let hrs_per_sub = parseInt(dp[sub ])
       console.log(hrs_per_sub)
-      let days_remaining = 15
+      let days_remaining = dp.time_left
       console.log(days_remaining)
       let hrs_rem = parseInt(days_remaining) *14
       console.log('hrs_rem', hrs_rem)
@@ -243,8 +335,10 @@ useEffect(() => {
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
             <div class="count-box">
             <CountUp end={growthfactor}/>
-              <p>Growth Factor</p>
+              <p style={{paddingBottom:'10px'}}>Growth Factor  <span style={{fontSize:'10px'}}> Factor proportional to expected output</span></p>
+             
             </div>
+            
           </div>
 
           <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">

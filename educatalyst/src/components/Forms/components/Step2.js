@@ -48,12 +48,12 @@ const Step2 = props => {
               
             </div>
             </div>
-            <Label style={{fontWeight:'500'}}> Time remaining for Test </Label>
+            <Label style={{fontWeight:'500'}}> Avg Time studied for each Test </Label>
         <Input
           type="text"
           name={sub + 'time_studied'}
           id="username"
-          placeholder="No of days left"
+          placeholder="No of hrs studied"
           value={props.username} // Prop: The username input data
           onChange={props.handleChange} // Prop: Puts data into the state
           
@@ -101,7 +101,17 @@ const Step2 = props => {
         
          }
          </div> */}
-         
+         <div className=" text-center"><Label style={{fontWeight:'600', paddingTop:'30px'} }> Time remaining for Test </Label></div>
+          
+        <Input
+          type="text"
+          name='time_left'
+          id="username"
+          placeholder="No of Days"
+          value={props.username} // Prop: The username input data
+          onChange={props.handleChange} // Prop: Puts data into the state
+          
+        />
         
       </FormGroup>
     </>
