@@ -103,6 +103,10 @@ const UIDashboard = () => {
     let dp = detail
     let subject_choosen = localStorage.getItem('sub')
     let survey  = JSON.parse(localStorage.getItem('survey_subjects'))
+    const min = Math.min(...avgMarks);
+      const index = avgMarks.indexOf(min);
+      console.log('MINNNN SUBB', stream[index])
+      setMinsub(stream[index])
     console.log(survey["Quality"])
     survey = survey['Quality']
     let pred_stream =[]
@@ -297,7 +301,7 @@ const UIDashboard = () => {
      let new_pred = predicted
      new_pred[i] = (pim+ms).toFixed(2)
      setPredicted(new_pred)}
-}, [avgMarks]);
+}, [predicted,scaleDn,hrrem,avgMarks,minSub]);
 
 useEffect(() => {
   console.log('updated again', predicted)
@@ -549,23 +553,23 @@ useEffect(() => {
     <CTableRow>
       <CTableHeaderCell scope="row">1</CTableHeaderCell>
       <CTableDataCell>{stream[0]}</CTableDataCell>
-      <CTableDataCell>{predicted[0]}</CTableDataCell>
+      <CTableDataCell>{predicted[0]} </CTableDataCell>
      
     </CTableRow>
     <CTableRow>
       <CTableHeaderCell scope="row">2</CTableHeaderCell>
       <CTableDataCell>{stream[1]}</CTableDataCell>
-      <CTableDataCell>{predicted[1]}</CTableDataCell>
+      <CTableDataCell>{predicted[1]} </CTableDataCell>
      
     </CTableRow> <CTableRow>
       <CTableHeaderCell scope="row">3</CTableHeaderCell>
       <CTableDataCell>{stream[2]}</CTableDataCell>
-      <CTableDataCell>{predicted[2]}</CTableDataCell>
+      <CTableDataCell>{predicted[2]} </CTableDataCell>
      
     </CTableRow> <CTableRow>
       <CTableHeaderCell scope="row">4</CTableHeaderCell>
       <CTableDataCell>{stream[3]}</CTableDataCell>
-      <CTableDataCell>{predicted[3]}</CTableDataCell>
+      <CTableDataCell>{predicted[3]} </CTableDataCell>
      
     </CTableRow>
   </CTableBody>
