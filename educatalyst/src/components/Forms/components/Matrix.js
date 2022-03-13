@@ -109,7 +109,7 @@ class SurveyComponent extends Component {
                   "text": "economics"
                 },
                 {
-                  "value": "Maths",
+                  "value": "maths",
                   "text": "maths"
                 },
                 

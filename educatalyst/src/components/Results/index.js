@@ -485,7 +485,54 @@ useEffect(() => {
 
       </div>
     </section>
-    
+    <div>
+  <div className='section-title text-center' style={{paddingTop:'50px'}}><h2>Overveiw</h2></div>
+  <div className='container'>
+<CTable color="teal" striped>
+  <CTableHead>
+    <CTableRow>
+      <CTableHeaderCell scope="col">#</CTableHeaderCell>
+      <CTableHeaderCell scope="col">Class</CTableHeaderCell>
+      <CTableHeaderCell scope="col">Predicted Marks</CTableHeaderCell>
+
+    </CTableRow>
+  </CTableHead>
+  <CTableBody>
+    <CTableRow color='info'>
+      <CTableHeaderCell scope="row">1</CTableHeaderCell>
+      <CTableDataCell>{stream[0]}</CTableDataCell>
+      <CTableDataCell>{predicted[0]} </CTableDataCell>
+     
+    </CTableRow>
+    <CTableRow >
+      <CTableHeaderCell scope="row">2</CTableHeaderCell>
+      <CTableDataCell>{stream[1]}</CTableDataCell>
+      <CTableDataCell>{predicted[1]} </CTableDataCell>
+     
+    </CTableRow> <CTableRow color='info'>
+      <CTableHeaderCell scope="row">3</CTableHeaderCell>
+      <CTableDataCell>{stream[2]}</CTableDataCell>
+      <CTableDataCell>{predicted[2]} </CTableDataCell>
+     
+    </CTableRow> <CTableRow>
+      <CTableHeaderCell scope="row">4</CTableHeaderCell>
+      <CTableDataCell>{stream[3]}</CTableDataCell>
+      <CTableDataCell>{predicted[3]} </CTableDataCell>
+     
+    </CTableRow>
+  </CTableBody>
+</CTable>
+</div>
+    </div>
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+        <div class="text-center">
+          <h3>Call To Action</h3>
+          <p>You need to work more on <span className='strong'>{minSub.toUpperCase()}</span>. You have scored lowest in this subject</p>
+         
+        </div>
+      </div>
+    </section>
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
 
@@ -528,53 +575,9 @@ useEffect(() => {
 
       </div>
     </section>
-<section id="cta" class="cta">
-      <div class="container" data-aos="zoom-in">
-        <div class="text-center">
-          <h3>Call To Action</h3>
-          <p>You need to work more on <span className='strong'>{minSub.toUpperCase()}</span>. You have scored lowest in this subject</p>
-         
-        </div>
-      </div>
-    </section>
 
-<div>
-  <div className='section-title text-center' style={{paddingTop:'50px'}}><h2>Overveiw</h2></div>
-<CTable color="teal" striped>
-  <CTableHead>
-    <CTableRow>
-      <CTableHeaderCell scope="col">#</CTableHeaderCell>
-      <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-      <CTableHeaderCell scope="col">Predicted Marks</CTableHeaderCell>
 
-    </CTableRow>
-  </CTableHead>
-  <CTableBody>
-    <CTableRow>
-      <CTableHeaderCell scope="row">1</CTableHeaderCell>
-      <CTableDataCell>{stream[0]}</CTableDataCell>
-      <CTableDataCell>{predicted[0]} </CTableDataCell>
-     
-    </CTableRow>
-    <CTableRow>
-      <CTableHeaderCell scope="row">2</CTableHeaderCell>
-      <CTableDataCell>{stream[1]}</CTableDataCell>
-      <CTableDataCell>{predicted[1]} </CTableDataCell>
-     
-    </CTableRow> <CTableRow>
-      <CTableHeaderCell scope="row">3</CTableHeaderCell>
-      <CTableDataCell>{stream[2]}</CTableDataCell>
-      <CTableDataCell>{predicted[2]} </CTableDataCell>
-     
-    </CTableRow> <CTableRow>
-      <CTableHeaderCell scope="row">4</CTableHeaderCell>
-      <CTableDataCell>{stream[3]}</CTableDataCell>
-      <CTableDataCell>{predicted[3]} </CTableDataCell>
-     
-    </CTableRow>
-  </CTableBody>
-</CTable>
-    </div>
+
     </div>
     </>
   )

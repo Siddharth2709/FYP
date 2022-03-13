@@ -48,10 +48,10 @@ const Hero = () => {
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="/">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
         
-          <li><a class="nav-link scrollto" href="mailto:arppitmadankar@gmail.com?subject=Business%20Enquiry%20for%20Educatalyst&body=Hello!%20Great%20work.%20">Contact</a></li>
+          <li><a class="nav-link scrollto" href="mailto:sxt986@student.bham.ac.uk?subject=Business%20Enquiry%20for%20Educatalyst&body=Hello!%20Great%20work.%20">Contact</a></li>
           <li><div onClick={() => {setModal(true)}}> <a class='nav-link scrollto'>Signed In: {un}</a></div></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -117,7 +117,7 @@ const Hero = () => {
   </section>
 
   <div className='text-center section-header'>
-    <h1> ABOUT</h1></div>
+    <h1> ABOUT TEAM</h1></div>
   <section  id="about" class="section">
        <div class="container">
            <div class="row">
